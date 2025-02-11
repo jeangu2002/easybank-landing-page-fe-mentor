@@ -144,12 +144,16 @@ body {
   }
 }
 
+.heading-2 {
+  font-size: 2.8rem;
+  font-weight: 600;
+}
+
 .subheading {
   font-size: 2.2rem;
   font-weight: 600;
   line-height: 1.2;
   transition: color 300ms;
-  cursor: pointer;
 }
 .subheading:hover {
   color: var(--cl-lime-green);
@@ -411,6 +415,11 @@ header .request-invite-link {
   opacity: 0;
   background-color: var(--cl-light-grayish-blue);
 }
+.features .description {
+  display: flex;
+  flex-direction: column;
+  gap: 1.5rem;
+}
 .features > .feature-list {
   padding-block: 0 7rem;
   text-align: center;
@@ -455,9 +464,9 @@ header .request-invite-link {
     text-align: left;
     grid-template-columns: repeat(auto-fit, minmax(250px, 1fr));
   }
-  .articles > div > .heading {
-    grid-column: 1/-1;
-  }
+}
+.articles .wrapper:has(> .heading-2) {
+  padding-block-end: 0;
 }
 
 .article {
