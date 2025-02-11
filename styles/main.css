@@ -123,22 +123,24 @@ body {
 
 .wrapper {
   padding: 5%;
-}
-@media screen and (min-width: 1100px) {
-  .wrapper {
-    padding: 10%;
-  }
+  max-width: min(100vw, 140rem);
+  margin-inline: auto;
 }
 
 .heading {
   font-size: 3.4rem;
   font-weight: 100;
   line-height: 1.4;
+  width: -moz-fit-content;
+  width: fit-content;
+  margin-inline: auto;
 }
 @media screen and (min-width: 1100px) {
   .heading {
     font-size: 5rem;
     line-height: 1.2;
+    width: unset;
+    margin-inline: unset;
   }
 }
 
@@ -154,7 +156,7 @@ body {
 }
 
 .request-invite-link {
-  padding: 1.5rem 4.5rem;
+  padding: 1rem 3.5rem;
   display: block;
   background-image: linear-gradient(90deg, var(--cl-lime-green), var(--cl-bright-cyan));
   border-radius: 50px;
@@ -164,7 +166,7 @@ body {
   width: fit-content;
 }
 .request-invite-link:hover {
-  opacity: 0.75;
+  opacity: 0.75 !important;
 }
 
 p {
@@ -172,7 +174,6 @@ p {
 }
 
 :has(> .request-invite-link) {
-  padding-inline: 10%;
   display: flex;
   justify-content: center;
 }
@@ -204,6 +205,7 @@ header > .wrapper .btn-close.active {
 }
 header .navigation {
   display: none;
+  color: var(--cl-grayish-blue);
 }
 header .navigation > ul {
   display: flex;
@@ -303,6 +305,14 @@ header .request-invite-link {
 .hero .heading .line {
   opacity: 0;
 }
+.hero .left-col .description {
+  display: flex;
+  flex-direction: column;
+  gap: 2rem;
+}
+.hero .left-col .request-invite-link {
+  margin-top: 2rem;
+}
 .hero .right-col {
   height: 360px;
   width: calc(100vw - 10%);
@@ -380,6 +390,9 @@ header .request-invite-link {
     padding-inline: 0;
     justify-content: unset;
   }
+  .hero .left-col .description {
+    display: unset;
+  }
   .hero .left-col p {
     margin-top: 3rem;
     overflow: hidden;
@@ -390,21 +403,25 @@ header .request-invite-link {
   }
   .hero .left-col .request-invite-link {
     opacity: 0;
+    margin-top: 0;
   }
 }
 
 .features {
+  opacity: 0;
+  background-color: var(--cl-light-grayish-blue);
+}
+.features > .feature-list {
+  padding-block: 0 7rem;
   text-align: center;
   display: grid;
-  gap: 8rem;
-  padding-block: 7rem;
-  background-color: var(--cl-light-grayish-blue);
-  opacity: 0;
+  justify-content: space-between;
+  gap: 3rem;
 }
 @media screen and (min-width: 1100px) {
-  .features {
+  .features > .feature-list {
     text-align: left;
-    grid-template-columns: repeat(auto-fit, minmax(260px, max-content));
+    grid-template-columns: repeat(auto-fit, minmax(250px, 1fr));
   }
 }
 
@@ -414,33 +431,31 @@ header .request-invite-link {
   justify-items: center;
   padding-inline: 10%;
 }
-.feature:first-child {
-  max-width: min(690px + 10%, 100%); /* 10% is the element padding */
-}
 @media screen and (min-width: 1100px) {
   .feature {
     justify-items: left;
     padding: 0;
   }
-  .feature:first-child {
-    grid-column: 1/-1;
+  .feature:not(:first-child) {
+    padding-left: 1rem;
   }
 }
 
 .articles {
-  padding-block: 7rem;
-  padding-inline: 10%;
-  display: grid;
-  gap: 8rem;
-  text-align: left;
   background-color: #f7f9fd;
 }
+.articles > div {
+  padding-block: 7rem;
+  display: grid;
+  text-align: left;
+  gap: 3rem;
+}
 @media screen and (min-width: 1100px) {
-  .articles {
+  .articles > div {
     text-align: left;
-    grid-template-columns: repeat(auto-fit, minmax(300px, 1fr));
+    grid-template-columns: repeat(auto-fit, minmax(250px, 1fr));
   }
-  .articles > .heading {
+  .articles > div > .heading {
     grid-column: 1/-1;
   }
 }
@@ -449,6 +464,8 @@ header .request-invite-link {
   display: grid;
   gap: 2rem;
   background-color: var(--cl-white);
+  border-radius: 0.5rem;
+  overflow: hidden;
 }
 .article__content {
   display: flex;
@@ -456,6 +473,9 @@ header .request-invite-link {
   gap: 1.5rem;
   padding-inline: 20px;
   padding-block-end: 20px;
+}
+.article img {
+  aspect-ratio: 3/2;
 }
 .article .subheading {
   font-size: 1.8rem;
@@ -465,18 +485,22 @@ header .request-invite-link {
 }
 
 footer {
+  background-color: var(--cl-dark-blue);
+}
+footer > div {
   display: grid !important;
   gap: 3.5rem;
   justify-items: center;
   color: var(--cl-white);
   padding-block: 4rem;
-  background-color: var(--cl-dark-blue);
   --gap-8: 8rem;
   padding-inline: 10%;
 }
 @media screen and (min-width: 1100px) {
-  footer {
+  footer > div {
     justify-items: end;
+    grid-template-columns: repeat(2, 1fr);
+    align-content: space-between;
   }
 }
 footer .col-1 {
@@ -520,7 +544,7 @@ footer nav > ul a:hover {
 }
 @media screen and (min-width: 1100px) {
   footer {
-    grid-template-columns: repeat(auto-fit, minmax(300px, 1fr));
+    grid-template-columns: repeat(auto-fit, minmax(300px, 350px));
     align-items: flex-start;
     justify-content: space-between !important;
   }
